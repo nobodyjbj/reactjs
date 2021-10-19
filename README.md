@@ -8,10 +8,22 @@
 $ npx create-react-app [프로젝트 이름]
 ```
 
+### git clone 받았을때
+
+```
+$ npm -i
+$ npm update
+$ npm install -g react-scripts // react-scripts 설치
+```
+
 ### start(실행)
 
 ```
 $ npm start
 ```
 
-## 폴더 설명
+### porp type 
+
+```
+$ npm i prop-types
+```
