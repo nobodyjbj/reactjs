@@ -16,7 +16,7 @@ class Home extends React.Component {
             }
         } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
 
-        console.log(movies); // movies.data.data.movies
+        // console.log(movies); // movies.data.data.movies
 
         this.setState({movies, isLoading: false}); // movies:movies 받고자 하는 데이터의 이름과 변수이름이 같으면 삭제 가능
     }
