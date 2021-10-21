@@ -14,6 +14,7 @@ $ npx create-react-app [프로젝트 이름]
 $ npm -i
 $ npm update
 $ npm install -g react-scripts // react-scripts 설치
+$ npm install axios // axios 설치
 ```
 
 ### start(실행)

@@ -1,48 +1,62 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import axios from "axios";
+import Movie from "./Movie";
+import "./App.css";
 
-class App extends React.Component { // class component
-    constructor(props) {
-        super(props);
-        console.log("hello");
-    }
-
-    // state 는 Object
-    // 변경되거나 바꾸고 싶은 데이터를 넣는 것
+class App extends React.Component {
     state = {
-        count: 0
-    };
+        isLoading: true,
+        movies: []
+    }
 
-    add = () => {
-        // state를 변경하기 위해서는 setState를 사용해야 한다. setState()할때마다 render function 을 다시 실행한다.
-        // current는 현재의 state상태를 가져온다. this.state와 같다.
-        this.setState(current => ({count: current.count + 1}))
-    };
-    minus = () => {
-        this.setState(current => ({count: current.count - 1}))
-    };
-    // component 가 그려질때 동작
+    getMovies = async () => {
+        const {
+            data: {
+                data: { movies }
+            }
+        } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+
+        console.log(movies); // movies.data.data.movies
+
+        this.setState({movies, isLoading: false}); // movies:movies 받고자 하는 데이터의 이름과 변수이름이 같으면 삭제 가능
+    }
+
+    // didMount에서 데이터를 fetch
     componentDidMount() {
-        console.log("component rendered");
-    }
-    // component 가 update 될 때 동작
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("I just updated");
-    }
-    // component 가 사라질때 동작
-    componentWillUnmount() {
-        console.log("GoodBye, crewel world");
+        /*setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 6000)*/
+
+        this.getMovies();
     }
 
     render() {
-        console.log("I'm Rendering");
-        return (
-            <div>
-                <h1>The number is {this.state.count}</h1>
-                <button onClick={this.add}>Add</button>
-                <button onClick={this.minus}>Minus</button>
-            </div>
-        )
+        const {isLoading, movies} = this.state;
+        return(
+            <section className="container">
+                {
+                isLoading ? (
+                    <div className="loader">
+                        <span className="loader_text">"Loading..."</span>
+                    </div>
+                ) : (
+                    <div className="movies">
+                        {
+                            movies.map(movie => (
+                                <Movie
+                                    key={movie.id}
+                                    id={movie.id}
+                                    year={movie.year}
+                                    title={movie.title}
+                                    summary={movie.summary}
+                                    poster={movie.medium_cover_image}
+                                    genres={movie.genres}
+                                />
+                            ))}
+                    </div>
+                )}
+            </section>
+        );
     }
 }
 
