@@ -28,3 +28,10 @@ $ npm start
 ```
 $ npm i prop-types
 ```
+
+### ph-pages 설치
+
+```
+//github에 페이지를 배포할 수 있도록 허용하는 모듈
+$ npm i ph-pages
+```
