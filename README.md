@@ -35,3 +35,9 @@ $ npm i prop-types
 //github에 페이지를 배포할 수 있도록 허용하는 모듈
 $ npm i ph-pages
 ```
+
+### react-router-dom 설치
+
+```
+$ npm install react-router-dom
+```
