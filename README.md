@@ -1,5 +1,9 @@
 # REACT JS
 
+### 완성된 사이트
+
+url: https://nobodyjbj.github.io/reactjs/
+
 ## 명령어
 
 ### create-react-app
@@ -23,7 +27,7 @@ $ npm install axios // axios 설치
 $ npm start
 ```
 
-### porp type 
+### porp type
 
 ```
 $ npm i prop-types
